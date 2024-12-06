@@ -165,8 +165,17 @@
         function endGame(message) {
             clearInterval(gameTimer);
             gameActive = false;
-            alert(message);
+            // Victory/defeat message removed
             document.getElementById('startButton').textContent = 'Start New Game';
+            // Disable all input boxes 5 seconds after winning, immediately for losing
+            const inputs = document.querySelectorAll('.topic-column input');
+            if (message.includes('Congratulations')) {
+                setTimeout(() => {
+                    inputs.forEach(input => input.disabled = true);
+                }, 5000);
+            } else {
+                inputs.forEach(input => input.disabled = true);
+            }
         }
     </script>
 </body>
